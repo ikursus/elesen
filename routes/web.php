@@ -12,14 +12,15 @@ Route::get('/', function () {
 Route::get('/users', function () {
     # Beri response paparkan template_index dari folder users
     return view('users.template_index');
-});
+})->name('users.index');
 
 # Route untuk tambah user baru
 Route::get('/users/add', function () {
-    return 'Halaman Tambah User Baru';
-});
+    # Beri response paparkan template_create dari folder users
+    return view('users.template_create');
+})->name('users.create');
 
 # Route untuk edit user
-Route::get('/users/{id}/edit', function () {
+Route::get('/users/{id}/edit', function ($id) {
     return 'Halaman Edit User';
-});
+})->name('users.edit');
