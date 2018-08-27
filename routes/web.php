@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 # Route untuk paparan senarai users
 Route::get('/users', function () {
+    # Beri response paparkan template_index dari folder users
     return view('users.template_index');
 });
 
