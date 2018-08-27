@@ -22,5 +22,9 @@ Route::get('/users/add', function () {
 
 # Route untuk edit user
 Route::get('/users/{id}/edit', function ($id) {
-    return 'Halaman Edit User';
+
+    $page_title = 'Halaman Edit User';
+
+    return view('users.template_edit', compact('page_title', 'id'));
+
 })->name('users.edit');

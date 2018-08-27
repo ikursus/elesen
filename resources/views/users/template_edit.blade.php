@@ -1,4 +1,7 @@
-<h1>Halaman Tambah User</h1>
+<h1>
+    {{ $page_title }}
+    {{ $id }}
+</h1>
 
 <hr>
 
