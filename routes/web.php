@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 # Route untuk paparan senarai users
 Route::get('/users', function () {
-    return 'Halaman Senarai Users';
+    return view('users.template_index');
 });
 
 # Route untuk tambah user baru
@@ -20,5 +20,5 @@ Route::get('/users/add', function () {
 
 # Route untuk edit user
 Route::get('/users/{id}/edit', function () {
-    return 'Halaman Tambah User Baru';
+    return 'Halaman Edit User';
 });
