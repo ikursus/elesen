@@ -10,8 +10,15 @@ Route::get('/', function () {
 
 # Route untuk paparan senarai users
 Route::get('/users', function () {
+
+    $senarai_users = [
+        ['id' => 1, 'nama' => 'Ahmad', 'email' => 'ahmad@gmail.com'],
+        ['id' => 2, 'nama' => 'John', 'email' => 'john@gmail.com'],
+        ['id' => 3, 'nama' => 'Muthu', 'email' => 'muthu@gmail.com']
+    ];
+
     # Beri response paparkan template_index dari folder users
-    return view('users.template_index');
+    return view('users.template_index', compact('senarai_users'));
 })->name('users.index');
 
 # Route untuk tambah user baru
