@@ -27,6 +27,15 @@ class UsersController extends Controller
         return view('users.template_create');
     }
 
+    # Method untuk terima data dari borang tambah users
+    # dan kemudian simpan rekod baru user ke dalam DB
+    public function store(Request $request)
+    {
+        $data = $request->except('nama', 'username');
+
+        return $data;
+    }
+
 
     # Papar borang edit user
     public function edit($id)
@@ -37,4 +46,12 @@ class UsersController extends Controller
         return view('users.template_edit', compact('page_title', 'id'));
 
     }
+
+
+
+
+
+
+
+
 }

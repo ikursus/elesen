@@ -8,7 +8,10 @@
                 <div class="card-header">Maklumat Pengguna</div>
 
                 <div class="card-body">
-<form>
+<form method="POST" action="{{ route('users.store') }}">
+@csrf
+{{ csrf_field() }}
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     <div class="form-group">
         <label>Nama Pengguna</label>
