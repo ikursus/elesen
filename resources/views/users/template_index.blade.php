@@ -10,6 +10,8 @@
 
 <div class="card-body">
 
+    @include('layouts.alerts')
+
     @if ( count( $senarai_users ) )
 
     <table class="table table-bordered">

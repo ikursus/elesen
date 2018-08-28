@@ -71,6 +71,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama' => 'required|min:3',
+            'username' => 'required|alpha_num',
+            'email' => 'required|email',
+            'password' => 'required|min:3|confirmed',
+            'role' => 'in:ADMIN,USER,STAFF'
+        ]);
+        
         $data = $request->all();
 
         return $data;

@@ -8,6 +8,9 @@
                 <div class="card-header">Maklumat Kategori</div>
 
                 <div class="card-body">
+
+                    @include('layouts.alerts')
+                    
 <form method="POST" action="{{ route('categories.store') }}">
 @csrf
 

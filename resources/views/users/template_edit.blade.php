@@ -9,6 +9,7 @@
 
                 <div class="card-body">
 
+                    @include('layouts.alerts')
 
                     <form method="POST" action="{{ route('users.update', ['id' => $id]) }}">
                     @csrf

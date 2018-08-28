@@ -42,6 +42,11 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'kod' => 'required|alpha_num',
+            'nama' => 'required|min:3',
+        ]);
+
         $data = $request->all();
 
         return $data;
@@ -78,6 +83,11 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'kod' => 'required|alpha_num',
+            'nama' => 'required|min:3',
+        ]);
+        
         $data = $request->all();
 
         return $data;
