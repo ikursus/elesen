@@ -1,59 +1,39 @@
-<h1>
-    {{ $page_title }}
-    {{ $id }}
-</h1>
+@extends('layouts.app')
 
-<hr>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Maklumat Kategori</div>
 
-<form>
-
-    <div>
-        <label>Nama Pengguna</label>
-        <input type="text" name="nama">
+                <div class="card-body">
+<form method="POST" action="{{ route('categories.update', ['id' => $id]) }}">
+@csrf
+@method('patch')
+    <div class="form-group">
+        <label>KOD KATEGORI</label>
+        <input class="form-control" type="text" name="kod">
     </div>
 
-    <div>
-        <label>Username</label>
-        <input type="text" name="username">
+    <div class="form-group">
+        <label>NAMA KATEGORI</label>
+        <input class="form-control" type="text" name="nama">
     </div>
 
-    <div>
-        <label>Email</label>
-        <input type="email" name="email">
-    </div>
-
-    <div>
-        <label>No. KP</label>
-        <input type="text" name="ic">
-    </div>
-
-    <div>
-        <label>Password</label>
-        <input type="password" name="password">
-    </div>
-
-    <div>
-        <label>Password Confirmation</label>
-        <input type="password" name="password_confirmation">
-    </div>
-
-    <div>
-        <label>Role / Level</label>
-        <select name="role">
-            <option value="ADMIN">ADMIN</option>
-            <option value="STAFF">STAFF</option>
-            <option value="USER">USER</option>
-        </select>
-    </div>
-
-    <div>
-        <button type="submit">SAVE</button>
+    <div class="form-group">
+        <a href="<?php echo route('categories.index'); ?>" class="btn btn-secondary">
+            BACK
+        </a>
+        <button type="submit" class="btn btn-primary float-right">SAVE</button>
     </div>
 
 </form>
 
-</hr>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<a href="<?php echo route('users.index'); ?>">
-    Kembali Ke Senarai User
-</a>
+@endsection

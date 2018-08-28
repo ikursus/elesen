@@ -66,7 +66,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('categories.template_edit', compact('id'));
     }
 
     /**
@@ -78,7 +78,9 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        return $data;
     }
 
     /**

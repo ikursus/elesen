@@ -1,59 +1,73 @@
-<h1>
-    {{ $page_title }}
-    {{ $id }}
-</h1>
+@extends('layouts.app')
 
-<hr>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Maklumat Pengguna ID: {{ $id }}</div>
 
-<form>
+                <div class="card-body">
 
-    <div>
-        <label>Nama Pengguna</label>
-        <input type="text" name="nama">
-    </div>
 
-    <div>
-        <label>Username</label>
-        <input type="text" name="username">
-    </div>
+                    <form method="POST" action="{{ route('users.update', ['id' => $id]) }}">
+                    @csrf
+                    @method('patch')
+                    <input type="hidden" name="_method" value="patch">
 
-    <div>
-        <label>Email</label>
-        <input type="email" name="email">
-    </div>
+                        <div class="form-group">
+                            <label>Nama Pengguna</label>
+                            <input class="form-control" type="text" name="nama">
+                        </div>
 
-    <div>
-        <label>No. KP</label>
-        <input type="text" name="ic">
-    </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input class="form-control" type="text" name="username">
+                        </div>
 
-    <div>
-        <label>Password</label>
-        <input type="password" name="password">
-    </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="email">
+                        </div>
 
-    <div>
-        <label>Password Confirmation</label>
-        <input type="password" name="password_confirmation">
-    </div>
+                        <div class="form-group">
+                            <label>No. KP</label>
+                            <input class="form-control" type="text" name="ic">
+                        </div>
 
-    <div>
-        <label>Role / Level</label>
-        <select name="role">
-            <option value="ADMIN">ADMIN</option>
-            <option value="STAFF">STAFF</option>
-            <option value="USER">USER</option>
-        </select>
-    </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control" type="password" name="password">
+                        </div>
 
-    <div>
-        <button type="submit">SAVE</button>
-    </div>
+                        <div class="form-group">
+                            <label>Password Confirmation</label>
+                            <input class="form-control" type="password" name="password_confirmation">
+                        </div>
 
-</form>
+                        <div class="form-group">
+                            <label>Role / Level</label>
+                            <select name="role" class="form-control">
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="STAFF">STAFF</option>
+                                <option value="USER">USER</option>
+                            </select>
+                        </div>
 
-</hr>
+                        <div class="form-group">
+                            <a href="<?php echo route('users.index'); ?>" class="btn btn-secondary">
+                                BACK
+                            </a>
+                            <button type="submit" class="btn btn-primary float-right">SAVE</button>
+                        </div>
 
-<a href="<?php echo route('users.index'); ?>">
-    Kembali Ke Senarai User
-</a>
+                    </form>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+@endsection
