@@ -13,7 +13,14 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $senarai_categories = [
+            ['id' => 1, 'kod' => 'A', 'nama' => 'UMUM'],
+            ['id' => 2, 'kod' => 'B', 'nama' => 'SEWA'],
+            ['id' => 3, 'kod' => 'C', 'nama' => 'PERNIAGAAN']
+        ];
+
+        # Beri response paparkan template_index dari folder categories
+        return view('categories.template_index', compact('senarai_categories'));
     }
 
     /**
@@ -23,7 +30,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        # Beri response paparkan template_create dari folder categories
+        return view('categories.template_create');
     }
 
     /**
@@ -34,7 +42,9 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        return $data;
     }
 
     /**
