@@ -8,6 +8,9 @@
                 <div class="card-header">Maklumat Pengguna</div>
 
                 <div class="card-body">
+
+                    @include('layouts.alerts')
+
 <form method="POST" action="{{ route('users.store') }}">
 @csrf
 {{ csrf_field() }}
@@ -15,17 +18,20 @@
 
     <div class="form-group">
         <label>Nama Pengguna</label>
-        <input class="form-control" type="text" name="nama">
+        <input class="form-control{{ $errors->has('nama') ? ' border border-danger' : '' }}" type="text" name="nama">
+        {!! $errors->first('nama', '<span style="color: red">:message</span>') !!}
     </div>
 
     <div class="form-group">
         <label>Username</label>
         <input class="form-control" type="text" name="username">
+        {!! $errors->first('username', '<span class="text-danger">:message</span>') !!}
     </div>
 
     <div class="form-group">
         <label>Email</label>
         <input class="form-control" type="email" name="email">
+        {!! $errors->first('email') !!}
     </div>
 
     <div class="form-group">

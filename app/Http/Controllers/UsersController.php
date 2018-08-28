@@ -31,6 +31,20 @@ class UsersController extends Controller
     # dan kemudian simpan rekod baru user ke dalam DB
     public function store(Request $request)
     {
+        # validate 1 (laravel 5.4 dan ke bawah)
+        // $this->validate( $request, [
+        //     'nama' => 'required|min:3'
+        // ]);
+
+        # validate 2 (laravel 5.5 dan ke atas)
+        $request->validate([
+            'nama' => 'required|min:3',
+            'username' => 'required|alpha_num',
+            'email' => 'required|email',
+            'password' => 'required|min:3|confirmed',
+            'role' => 'in:ADMIN,USER,STAFF'
+        ]);
+
         $data = $request->except('nama', 'username');
 
         return $data;
