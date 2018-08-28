@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class CategoriesController extends Controller
 {
@@ -13,11 +14,13 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $senarai_categories = [
-            ['id' => 1, 'kod' => 'A', 'nama' => 'UMUM'],
-            ['id' => 2, 'kod' => 'B', 'nama' => 'SEWA'],
-            ['id' => 3, 'kod' => 'C', 'nama' => 'PERNIAGAAN']
-        ];
+        // $senarai_categories = [
+        //     ['id' => 1, 'kod' => 'A', 'nama' => 'UMUM'],
+        //     ['id' => 2, 'kod' => 'B', 'nama' => 'SEWA'],
+        //     ['id' => 3, 'kod' => 'C', 'nama' => 'PERNIAGAAN']
+        // ];
+
+        $senarai_categories = DB::table('categories')->get();
 
         # Beri response paparkan template_index dari folder categories
         return view('categories.template_index', compact('senarai_categories'));
@@ -42,14 +45,17 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        # Validate data
         $request->validate([
             'kod' => 'required|alpha_num',
             'nama' => 'required|min:3',
         ]);
-
-        $data = $request->all();
-
-        return $data;
+        # Dapatkan data dari borang
+        $data = $request->only('kod', 'nama');
+        # Simpan data ke dalam table categories
+        DB::table('categories')->insert($data);
+        # Redirect client ke senarai categories
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -87,7 +93,7 @@ class CategoriesController extends Controller
             'kod' => 'required|alpha_num',
             'nama' => 'required|min:3',
         ]);
-        
+
         $data = $request->all();
 
         return $data;

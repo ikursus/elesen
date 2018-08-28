@@ -29,11 +29,11 @@
             @foreach( $senarai_categories as $item )
 
             <tr>
-                <td>{{ $item['id'] }}</td>
-                <td>{{ $item['kod'] }}</td>
-                <td>{{ $item['nama'] }}</td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->kod }}</td>
+                <td>{{ $item->nama }}</td>
                 <td>
-                    <a class="btn btn-sm btn-info" href="{{ route('categories.edit', ['id' => $item['id'] ]) }}">EDIT</a>
+                    <a class="btn btn-sm btn-info" href="{{ route('categories.edit', ['id' => $item->id ]) }}">EDIT</a>
                 </td>
             </tr>
 
