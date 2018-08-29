@@ -46,12 +46,14 @@ class UsersController extends Controller
         $data = $request->only([
             'username',
             'nama',
-            'password',
             'role',
             'alamat',
             'ic',
             'email'
         ]);
+        # Encrypt password
+        $data['password'] = bcrypt($request->input('password'));
+
         # Simpan data ke dalam table users
         DB::table('users')->insert($data);
         # Beri respon redirect ke halaman senarai users

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\Category;
 
 class CategoriesController extends Controller
 {
@@ -24,9 +25,13 @@ class CategoriesController extends Controller
         // ->select('id', 'kod as kod_kategori', 'nama')
         // ->get();
         # Dapatkan rekod daripada table kategori dan set pagination kepada 2 rekod setiap satu halaman
-        $senarai_categories = DB::table('categories')
-        //->where('id', '<=', 3)
-        ->select('id', 'kod as kod_kategori', 'nama')
+        // $senarai_categories = DB::table('categories')
+        // //->where('id', '<=', 3)
+        // ->select('id', 'kod as kod_kategori', 'nama')
+        // ->orderBy('id', 'desc') // asc atau desc
+        // ->paginate(2);
+
+        $senarai_categories = Category::select('id', 'kod as kod_kategori', 'nama')
         ->orderBy('id', 'desc') // asc atau desc
         ->paginate(2);
 
@@ -60,10 +65,11 @@ class CategoriesController extends Controller
         ]);
 
         # Dapatkan data dari borang
-        $data = $request->only('kod', 'nama');
+        $data = $request->all();
 
         # Simpan data ke dalam table categories
-        DB::table('categories')->insert($data);
+        # DB::table('categories')->insert($data);
+        Category::create($data);
 
         # Redirect client ke senarai categories dan sertakan ayat sukses menerusi flash messaging
         return redirect()->route('categories.index')->with('alert-success', 'Data berjaya ditambah.');
@@ -111,12 +117,15 @@ class CategoriesController extends Controller
         ]);
 
         # Dapatkan data dari borang
-        $data = $request->only('kod', 'nama');
+        $data = $request->all();
 
         # Kemaskini data berdasarkan ID ke dalam table categories
-        DB::table('categories')
-        ->where('id', '=', $id)
-        ->update($data);
+        // DB::table('categories')
+        // ->where('id', '=', $id)
+        // ->update($data);
+
+        $category = Category::find($id);
+        $category->update($data);
 
         # Redirect client ke halaman sebelum (halaman yang sedang di edit)
         return redirect()->back()->with('alert-success', 'Data berjaya dikemaskini.');
@@ -131,10 +140,12 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         # Dapatkan rekod berdasarkan ID dan hapuskan ia
-        $category = DB::table('categories')
-        ->where('id', '=', $id)
-        ->delete();
-
+        // $category = DB::table('categories')
+        // ->where('id', '=', $id)
+        // ->delete();
+        $category = Category::find($id);
+        $category->delete();
+        
         # Redirect client ke senarai categories dan sertakan ayat sukses menerusi flash messaging
         return redirect()->route('categories.index')->with('alert-success', 'Data berjaya dihapuskan.');
     }
