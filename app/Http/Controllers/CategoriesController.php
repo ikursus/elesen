@@ -19,8 +19,16 @@ class CategoriesController extends Controller
         //     ['id' => 2, 'kod' => 'B', 'nama' => 'SEWA'],
         //     ['id' => 3, 'kod' => 'C', 'nama' => 'PERNIAGAAN']
         // ];
-
-        $senarai_categories = DB::table('categories')->get();
+        # Dapatkan SEMUA rekod dari table categories dan rename column kod kepada kod_kategori
+        // $senarai_categories = DB::table('categories')
+        // ->select('id', 'kod as kod_kategori', 'nama')
+        // ->get();
+        # Dapatkan rekod daripada table kategori dan set pagination kepada 2 rekod setiap satu halaman
+        $senarai_categories = DB::table('categories')
+        ->where('id', '<=', 3)
+        ->select('id', 'kod as kod_kategori', 'nama')
+        ->orderBy('id', 'desc') // asc atau desc
+        ->paginate(2);
 
         # Beri response paparkan template_index dari folder categories
         return view('categories.template_index', compact('senarai_categories'));
@@ -50,12 +58,15 @@ class CategoriesController extends Controller
             'kod' => 'required|alpha_num',
             'nama' => 'required|min:3',
         ]);
+
         # Dapatkan data dari borang
         $data = $request->only('kod', 'nama');
+
         # Simpan data ke dalam table categories
         DB::table('categories')->insert($data);
-        # Redirect client ke senarai categories
-        return redirect()->route('categories.index');
+
+        # Redirect client ke senarai categories dan sertakan ayat sukses menerusi flash messaging
+        return redirect()->route('categories.index')->with('alert-success', 'Data berjaya ditambah.');
     }
 
     /**

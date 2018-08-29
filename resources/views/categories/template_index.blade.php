@@ -10,6 +10,12 @@
 
 <div class="card-body">
 
+    <p>
+        <a href="<?php echo route('categories.create'); ?>" class="btn btn-primary">
+        Tambah Kategori Baru
+        </a>
+    </p>
+
     @include('layouts.alerts')
 
     @if ( count( $senarai_categories ) )
@@ -30,7 +36,7 @@
 
             <tr>
                 <td>{{ $item->id }}</td>
-                <td>{{ $item->kod }}</td>
+                <td>{{ $item->kod_kategori }}</td>
                 <td>{{ $item->nama }}</td>
                 <td>
                     <a class="btn btn-sm btn-info" href="{{ route('categories.edit', ['id' => $item->id ]) }}">EDIT</a>
@@ -44,11 +50,10 @@
 
     </table>
 
-    @endif
+    {{ $senarai_categories->links() }}
+    {{ $senarai_categories->render() }}
 
-    <a href="<?php echo route('categories.create'); ?>" class="btn btn-primary">
-        Tambah Kategori Baru
-    </a>
+    @endif
 
 </div>
 </div>
