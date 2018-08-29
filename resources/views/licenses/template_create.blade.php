@@ -27,27 +27,27 @@
 
     <div class="form-group">
         <label>TARIKH MULA</label>
-        <input class="form-control" type="date" name="tarikh_mula">
+        <input class="form-control" type="date" name="tarikh_mula" value="{{ old('tarikh_mula') }}">
     </div>
 
     <div class="form-group">
         <label>TARIKH TAMAT</label>
-        <input class="form-control" type="date" name="tarikh_tamat">
+        <input class="form-control" type="date" name="tarikh_tamat" value="{{ old('tarikh_tamat') }}">
     </div>
 
     <div class="form-group">
         <label>REMARKS</label>
-        <textarea class="form-control" name="remarks"></textarea>
+        <textarea class="form-control" name="remarks">{{ old('remarks') }}</textarea>
     </div>
 
     <div class="form-group">
         <label>PROVIDER</label>
-        <input class="form-control" type="text" name="provider">
+        <input class="form-control" type="text" name="provider" value="{{ old('provider') }}">
     </div>
 
     <div class="form-group">
         <label>STATUS</label>
-        <select name="category_id" class="form-control">
+        <select name="status" class="form-control">
 
             @foreach( $senarai_status as $item )
             <option value="{{ $item['status'] }}">{{ $item['status'] }}</option>

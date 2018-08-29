@@ -46,7 +46,22 @@ class LicensesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tarikh_mula' => 'required|date',
+            'tarikh_tamat' => 'required|date',
+            'category_id' => 'required',
+            'status' => 'required',
+            'provider' => 'required'
+        ]);
+
+        # Dapatkan SEMUA data dari borang
+        $data = $request->all();
+
+        # Simpan data ke dalam table licenses
+        License::create($data);
+        # Redirect ke senarai licenses
+        return redirect()->route('licenses.index')->with('alert-success', 'Rekod berjaya ditambah!');
+
     }
 
     /**
