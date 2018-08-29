@@ -145,7 +145,7 @@ class CategoriesController extends Controller
         // ->delete();
         $category = Category::find($id);
         $category->delete();
-        
+
         # Redirect client ke senarai categories dan sertakan ayat sukses menerusi flash messaging
         return redirect()->route('categories.index')->with('alert-success', 'Data berjaya dihapuskan.');
     }
