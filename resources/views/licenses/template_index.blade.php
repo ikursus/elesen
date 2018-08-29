@@ -40,7 +40,7 @@
 
             <tr>
                 <td>{{ $item->id }}</td>
-                <td>{{ $item->category_id }}</td>
+                <td>{{ $item->category->nama }}</td>
                 <td>{{ $item->tarikh_mula }}</td>
                 <td>{{ $item->tarikh_tamat }}</td>
                 <td>{{ $item->provider }}</td>

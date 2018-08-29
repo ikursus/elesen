@@ -17,4 +17,10 @@ class License extends Model
         'remarks',
         'status'
     ];
+
+    # Relationship one to one (inverse)
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
