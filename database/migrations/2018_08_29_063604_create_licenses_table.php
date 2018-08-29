@@ -20,6 +20,8 @@ class CreateLicensesTable extends Migration
             $table->text('remarks');
             $table->string('status', 100);
             $table->string('provider');
+            # $table->unsignedInteger('category_id')->nullable();
+            $table->integer('category_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

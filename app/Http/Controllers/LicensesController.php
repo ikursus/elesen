@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\License;
+use App\Models\Category;
+
 class LicensesController extends Controller
 {
     /**
@@ -13,7 +16,9 @@ class LicensesController extends Controller
      */
     public function index()
     {
-        //
+        $senarai_licenses = License::all();
+
+        return view('licenses/template_index', compact('senarai_licenses'));
     }
 
     /**
@@ -23,7 +28,14 @@ class LicensesController extends Controller
      */
     public function create()
     {
-        //
+        # $senarai_kategori = Category::pluck('nama', 'id');
+        $senarai_kategori = Category::select('nama', 'id')->get();
+        $senarai_status = [
+            ['status' => 'BATAL'],
+            ['status' => 'AKTIF'],
+        ];
+
+        return view('licenses.template_create', compact('senarai_kategori', 'senarai_status'));
     }
 
     /**
