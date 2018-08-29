@@ -10,18 +10,18 @@
                 <div class="card-body">
 
                     @include('layouts.alerts')
-                    
-<form method="POST" action="{{ route('categories.update', ['id' => $id]) }}">
+
+<form method="POST" action="{{ route('categories.update', ['id' => $category->id]) }}">
 @csrf
 @method('patch')
     <div class="form-group">
         <label>KOD KATEGORI</label>
-        <input class="form-control" type="text" name="kod">
+        <input class="form-control" type="text" name="kod" value="{{ $category->kod }}">
     </div>
 
     <div class="form-group">
         <label>NAMA KATEGORI</label>
-        <input class="form-control" type="text" name="nama">
+        <input class="form-control" type="text" name="nama" value="{{ $category->nama }}">
     </div>
 
     <div class="form-group">

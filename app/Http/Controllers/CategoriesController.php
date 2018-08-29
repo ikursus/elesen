@@ -88,7 +88,12 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        return view('categories.template_edit', compact('id'));
+        # Dapatkan rekod dari table categories berdasarkan ID
+        $category = DB::table('categories')
+        ->where('id', '=', $id)
+        ->first();
+        # Bagi respon papar borang edit
+        return view('categories.template_edit', compact('category'));
     }
 
     /**
@@ -105,9 +110,16 @@ class CategoriesController extends Controller
             'nama' => 'required|min:3',
         ]);
 
-        $data = $request->all();
+        # Dapatkan data dari borang
+        $data = $request->only('kod', 'nama');
 
-        return $data;
+        # Kemaskini data berdasarkan ID ke dalam table categories
+        DB::table('categories')
+        ->where('id', '=', $id)
+        ->update($data);
+
+        # Redirect client ke halaman sebelum (halaman yang sedang di edit)
+        return redirect()->back()->with('alert-success', 'Data berjaya dikemaskini.');
     }
 
     /**
