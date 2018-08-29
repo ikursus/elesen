@@ -51,7 +51,7 @@
                     </button>
 
                     <!-- Modal -->
-                    <form method="POST" action="{{ route('categories.destroy', ['id' => $item->id ]) }}">
+                    <form method="POST" action="{{ route('users.destroy', ['id' => $item->id ]) }}">
                     @csrf
                     @method('delete')
 
