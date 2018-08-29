@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label>Nama Pengguna</label>
-        <input type="text" name="nama" value="{{ $user->nama }}">
+        <input class="form-control" type="text" name="nama" value="{{ $user->nama }}">
     </div>
 
     <div class="form-group">
@@ -33,6 +33,11 @@
     <div class="form-group">
         <label>No. KP</label>
         <input class="form-control" type="text" name="ic" value="{{ $user->ic }}">
+    </div>
+
+    <div class="form-group">
+        <label>Alamat</label>
+        <textarea class="form-control" name="alamat">{{ $user->alamat }}</textarea>
     </div>
 
     <div class="form-group">

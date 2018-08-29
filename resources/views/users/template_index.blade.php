@@ -10,6 +10,12 @@
 
 <div class="card-body">
 
+<p>
+    <a href="<?php echo route('users.create'); ?>" class="btn btn-primary">
+        Tambah User Baru
+    </a>
+</p>
+
     @include('layouts.alerts')
 
     @if ( count( $senarai_users ) )
@@ -84,10 +90,6 @@
     </table>
 
     @endif
-
-    <a href="<?php echo route('users.create'); ?>" class="btn btn-primary">
-        Tambah User Baru
-    </a>
 
 </div>
 </div>

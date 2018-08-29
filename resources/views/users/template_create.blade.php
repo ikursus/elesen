@@ -40,6 +40,11 @@
     </div>
 
     <div class="form-group">
+        <label>Alamat</label>
+        <textarea class="form-control" name="alamat"></textarea>
+    </div>
+
+    <div class="form-group">
         <label>Password</label>
         <input class="form-control" type="password" name="password">
     </div>
