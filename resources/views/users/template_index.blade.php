@@ -67,7 +67,7 @@
                           <div class="modal-body">
                             Adakah anda bersetuju untuk menghapuskan data berikut:
 
-                            <p>ID: {{ $item->nama }}</p>
+                            <p>Nama: {{ $item->nama }}</p>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

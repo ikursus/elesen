@@ -64,11 +64,10 @@ class UsersController extends Controller
     {
         # Dapatkan rekod user berdasarkan ID
         $user = DB::table('users')
-        ->where('id',$id)
+        ->where('id', $id)
         ->first();
-
+        # Bagi respon papar borang edit
         return view('users.template_edit', compact('user'));
-
     }
 
 

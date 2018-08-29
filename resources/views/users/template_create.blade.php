@@ -18,30 +18,30 @@
 
     <div class="form-group">
         <label>Nama Pengguna</label>
-        <input class="form-control{{ $errors->has('nama') ? ' border border-danger' : '' }}" type="text" name="nama">
+        <input class="form-control" type="text" name="nama" value="{{ old('nama') }}">
         {!! $errors->first('nama', '<span style="color: red">:message</span>') !!}
     </div>
 
     <div class="form-group">
         <label>Username</label>
-        <input class="form-control" type="text" name="username">
+        <input class="form-control" type="text" name="username" value="{{ old('username') }}">
         {!! $errors->first('username', '<span class="text-danger">:message</span>') !!}
     </div>
 
     <div class="form-group">
         <label>Email</label>
-        <input class="form-control" type="email" name="email">
+        <input class="form-control" type="email" name="email" value="{{ old('email') }}">
         {!! $errors->first('email') !!}
     </div>
 
     <div class="form-group">
         <label>No. KP</label>
-        <input class="form-control" type="text" name="ic">
+        <input class="form-control" type="text" name="ic" value="{{ old('ic') }}">
     </div>
 
     <div class="form-group">
         <label>Alamat</label>
-        <textarea class="form-control" name="alamat"></textarea>
+        <textarea class="form-control" name="alamat">{{ old('alamat') }}</textarea>
     </div>
 
     <div class="form-group">
