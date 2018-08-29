@@ -25,7 +25,7 @@ class CategoriesController extends Controller
         // ->get();
         # Dapatkan rekod daripada table kategori dan set pagination kepada 2 rekod setiap satu halaman
         $senarai_categories = DB::table('categories')
-        ->where('id', '<=', 3)
+        //->where('id', '<=', 3)
         ->select('id', 'kod as kod_kategori', 'nama')
         ->orderBy('id', 'desc') // asc atau desc
         ->paginate(2);
@@ -130,6 +130,12 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        # Dapatkan rekod berdasarkan ID dan hapuskan ia
+        $category = DB::table('categories')
+        ->where('id', '=', $id)
+        ->delete();
+
+        # Redirect client ke senarai categories dan sertakan ayat sukses menerusi flash messaging
+        return redirect()->route('categories.index')->with('alert-success', 'Data berjaya dihapuskan.');
     }
 }
