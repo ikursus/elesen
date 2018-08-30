@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use DataTables;
 use App\Models\Category;
+use App\Models\License;
 
 class CategoriesController extends Controller
 {
@@ -31,13 +33,38 @@ class CategoriesController extends Controller
         // ->orderBy('id', 'desc') // asc atau desc
         // ->paginate(2);
 
-        $senarai_categories = Category::select('id', 'kod as kod_kategori', 'nama')
-        ->orderBy('id', 'desc') // asc atau desc
-        ->paginate(2);
+        # Beri response paparkan template_index dari folder categories
+        return view('categories.template_index');
+    }
+
+    # AJAX Request untuk datatables
+    public function datatables()
+    {
+        # Query rekod categories dari DB
+        $query = Category::select('id', 'kod', 'nama');
+        # Beri response datatables beserta query
+        return DataTables::of($query)
+        ->addColumn('action', function ($item) {
+            return view('categories.template_action', compact('item'));
+        })
+        ->make(true);
+    }
+
+    public function licenses($id)
+    {
+        $category = Category::find($id);
 
         # Beri response paparkan template_index dari folder categories
-        return view('categories.template_index', compact('senarai_categories'));
+        return view('categories.template_licenses', compact('category'));
     }
+
+    // public function licensesDatatables($id)
+    // {
+    //     # Query rekod categories dari DB
+    //     $query = License::with('category')->select('id', 'category_id', 'tarikh_mula', 'tarikh_tamat', 'status', 'provider', 'remarks');
+    //     # Beri response datatables beserta query
+    //     return DataTables::of($query)->make(true);
+    // }
 
     /**
      * Show the form for creating a new resource.

@@ -28,10 +28,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     # Paparkan senarai categories
     Route::get('/categories', 'CategoriesController@index')->name('categories.index');
+    # Route untuk AJAX Request datatables senarai categories
+    Route::get('/categories/datatables', 'CategoriesController@datatables')->name('categories.datatables');
     # Paparkan borang tambah category baru
     Route::get('/categories/add', 'CategoriesController@create')->name('categories.create');
     # Simpan data tambah category baru
     Route::post('/categories/add', 'CategoriesController@store')->name('categories.store');
+    # Paparkan template senarai lesen berdasarkan category ID
+    Route::get('/categories/{id}/licenses', 'CategoriesController@licenses')->name('categories.licenses');
+    # AJAX Request untuk senarai licenses berdasarkan ID category
+    Route::get('/categories/{id}/licenses/datatables', 'CategoriesController@licensesDatatables')->name('categories.licenses.datatables');
     # Paparkan borang edit category
     Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
     # Simpan data kemaskini category

@@ -18,4 +18,12 @@ class Category extends Model
         'nama',
         'kod',
     ];
+
+    # Relationships table category kepada table licenses
+    public function senarai_licenses()
+    {
+        return $this->hasMany(License::class);
+    }
+
+
 }

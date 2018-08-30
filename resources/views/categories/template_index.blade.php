@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -11,16 +15,14 @@
 <div class="card-body">
 
     <p>
-        <a href="<?php echo route('categories.create'); ?>" class="btn btn-primary">
+        <a href="{{ route('categories.create') }}" class="btn btn-primary">
         Tambah Kategori Baru
         </a>
     </p>
 
     @include('layouts.alerts')
 
-    @if ( count( $senarai_categories ) )
-
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="categories-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -30,69 +32,32 @@
             </tr>
         </thead>
 
-        <tbody>
-
-            @foreach( $senarai_categories as $item )
-
-            <tr>
-                <td>{{ $item->id }}</td>
-                <td>{{ $item->kod_kategori }}</td>
-                <td>{{ $item->nama }}</td>
-                <td>
-                    <a class="btn btn-sm btn-info" href="{{ route('categories.edit', ['id' => $item->id ]) }}">EDIT</a>
-
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $item->id }}">
-                        DELETE
-                    </button>
-
-                    <!-- Modal -->
-                    <form method="POST" action="{{ route('categories.destroy', ['id' => $item->id ]) }}">
-                    @csrf
-                    @method('delete')
-
-                    <div class="modal fade" id="modal-delete-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            Adakah anda bersetuju untuk menghapuskan data berikut:
-
-                            <p>ID: {{ $item->id }}</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger">Confirm</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    </form>
-
-                </td>
-            </tr>
-
-            @endforeach
-
-        </tbody>
-
-
     </table>
 
-    {{ $senarai_categories->links() }}
-    {{ $senarai_categories->render() }}
+</div>
+</div>
+</div>
+</div>
+</div>
+@endsection
 
-    @endif
+@section('script')
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
-</div>
-</div>
-</div>
-</div>
-</div>
+<script>
+$(function() {
+    $('#categories-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('categories.datatables') !!}',
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'kod', name: 'kod' },
+            { data: 'nama', name: 'nama' },
+            { data: 'action', name: 'action', orderable: false, searchable: false }
+        ]
+    });
+});
+</script>
+
 @endsection
