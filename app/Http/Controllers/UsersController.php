@@ -68,6 +68,9 @@ class UsersController extends Controller
 
             ';
         })
+        ->editColumn('nama', function($item) {
+            return strtoupper($item->nama);
+        })
         ->make(true);
     }
 

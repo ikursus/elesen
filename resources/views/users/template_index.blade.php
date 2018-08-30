@@ -58,7 +58,8 @@ $(function() {
             { data: 'nama', name: 'nama' },
             { data: 'email', name: 'email' },
             { data: 'ic', name: 'ic' },
-            { data: 'role', name: 'role' }
+            { data: 'role', name: 'role' },
+            { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });
 });
