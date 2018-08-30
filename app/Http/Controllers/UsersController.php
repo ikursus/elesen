@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use DataTables;
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -11,10 +13,20 @@ class UsersController extends Controller
     public function index()
     {
         # Dapatkan rekod dari table users
-        $senarai_users = DB::table('users')->get();
+        // $senarai_users = DB::table('users')->get(); // Tukar ke datatables
 
         # Beri response paparkan template_index dari folder users
-        return view('users.template_index', compact('senarai_users'));
+        // return view('users.template_index', compact('senarai_users'));
+        return view('users.template_index');
+    }
+
+    # AJAX Request untuk datatables
+    public function datatables()
+    {
+        # Query rekod users dari DB
+        $query = User::select('id', 'nama', 'email', 'ic', 'role');
+        # Beri response datatables beserta query
+        return DataTables::of($query)->make(true);
     }
 
     # Papar borang tambah user

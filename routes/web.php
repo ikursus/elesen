@@ -12,6 +12,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     # Route untuk paparan senarai users
     Route::get('/users', 'UsersController@index')->name('users.index');
+    # Route untuk AJAX Request datatables senarai users
+    Route::get('/users/datatables', 'UsersController@datatables')->name('users.datatables');
     # Route untuk tambah user baru
     Route::get('/users/add', 'UsersController@create')->name('users.create');
     # Simpan data tambah user baru
