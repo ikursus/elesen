@@ -84,9 +84,11 @@ class UsersController extends Controller
     public function edit($id)
     {
         # Dapatkan rekod user berdasarkan ID
-        $user = DB::table('users')
-        ->where('id', $id)
-        ->first();
+        // $user = DB::table('users')
+        // ->where('id', $id)
+        // ->first();
+        $user = User::find($id);
+
         # Bagi respon papar borang edit
         return view('users.template_edit', compact('user'));
     }
