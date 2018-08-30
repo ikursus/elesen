@@ -45,13 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
     # Delete data berdasarkan rekod id
     Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categories.destroy');
 
-
     # Paparkan senarai licenses
     Route::get('/licenses', 'LicensesController@index')->name('licenses.index');
     # Paparkan borang tambah license baru
     Route::get('/licenses/add', 'LicensesController@create')->name('licenses.create');
     # Simpan data tambah license baru
     Route::post('/licenses/add', 'LicensesController@store')->name('licenses.store');
+    # Simpan data tambah license baru
+    Route::patch('/licenses/update', 'LicensesController@updateSelected')->name('licenses.update.selected');
     # Paparkan borang edit license
     Route::get('/licenses/{id}/edit', 'LicensesController@edit')->name('licenses.edit');
     # Simpan data kemaskini license

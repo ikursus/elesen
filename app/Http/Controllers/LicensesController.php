@@ -108,4 +108,23 @@ class LicensesController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateSelected(Request $request)
+    {
+        $data  = $request->input('id');
+
+        foreach ( $data as $key => $value)
+        {
+            $license = License::find($value);
+            $license->update(['status' => $request->input('status')]);
+        }
+
+        return redirect()->back()->with('alert-success', 'Rekod berjaya dikemaskini');
+    }
 }
